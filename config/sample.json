@@ -1,0 +1,22 @@
+{
+  "port": 3000,
+  "bot_token": "NzAwMDYyNjg2Mzg5NjAwMjU3.XphBoQ.gJhHKtfmsEx8a5wUuN4kwErF0UQ",
+  "sql_db": {
+    "read": {
+      "connectionLimit": "connection limit",
+      "host": "host",
+      "user": "user",
+      "password": "password",
+      "database":"db"
+    },
+    "write": {
+      "connectionLimit": "connection limit",
+      "host": "host",
+      "user": "user",
+      "password": "password",
+      "database":"db"
+    }
+  },
+  "google_api_key": "key",
+  "google_custom_search_key": "key"
+}

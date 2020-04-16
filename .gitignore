@@ -1,0 +1,4 @@
+/.idea/
+!config/sample.json
+node_modules/*
+*.iml
