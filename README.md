@@ -2,10 +2,10 @@
 A discord chat bot made by using nodeJs and MySQL
 
 To use this app make sure you have:
-node version 10+
-mysql 5.7
-discord bot access token
-google api key
+node version 10+,
+mysql 5.7,
+discord bot access token,
+google api key,
 google custom search key
 
 step1:
