@@ -1,5 +1,5 @@
 /.idea/
-config
-!config/sample.json
 node_modules/*
 *.iml
+/config/
+!config/sample.json
