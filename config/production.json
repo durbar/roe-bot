@@ -1,0 +1,21 @@
+{
+  "port": 3000,
+  "bot_token": "NzAwMDYyNjg2Mzg5NjAwMjU3.XpjHyA.LR-Mor8bknMF7Ls6QHlTpdC0gqE",
+  "sql_db": {
+    "read": {
+      "connectionLimit": 10,
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "lowerUP96##",
+      "database": "bot"
+    },
+    "write": {
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "lowerUP96##",
+      "database": "bot"
+    }
+  },
+  "google_api_key": "AIzaSyA5xamBKC3FpcuqSRNH0WB2dtMkMzjPax4",
+  "google_custom_search_key": "017225568799875072824:wwbks9y1mvr"
+}

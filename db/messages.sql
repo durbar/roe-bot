@@ -1,4 +1,4 @@
-CREATE TABLE `messages` (
+create TABLE `messages` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `user_id` varchar(30) NOT NULL DEFAULT '',

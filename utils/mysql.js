@@ -10,55 +10,55 @@ let poolObj = {};
 
 for (const connection in dbConfig) {
 
-    poolObj[connection] = {
-        connection,
-        pool: mysql.createPool(dbConfig[connection]),
-    }
+	poolObj[connection] = {
+		connection,
+		pool: mysql.createPool(dbConfig[connection]),
+	}
 }
 
 class MySQL {
 
-    constructor(connectionName = 'read') {
+	constructor(connectionName = 'read') {
 
-        this.pool = poolObj[connectionName || 'read'] || poolObj['read'];
-    }
+		this.pool = poolObj[connectionName || 'read'] || poolObj['read'];
+	}
 
-    async query(sql, values = null, connectionName = "read") {
+	async query(sql, values = null, connectionName = "read") {
 
-        if(!poolObj[connectionName]) {
+		if (!poolObj[connectionName]) {
 
-            throw(new Error('Connection not found'));
-        }
+			throw(new Error('Connection not found'));
+		}
 
-        if(!poolObj[connectionName].pool) {
+		if (!poolObj[connectionName].pool) {
 
-            poolObj[connectionName].pool = mysql.createPool(poolObj[connectionName].connection);
-        }
+			poolObj[connectionName].pool = mysql.createPool(poolObj[connectionName].connection);
+		}
 
-        this.pool = poolObj[connectionName].pool;
+		this.pool = poolObj[connectionName].pool;
 
-        return new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 
-            const q = this.pool.query(sql, values, function (err, result) {
+			const q = this.pool.query(sql, values, function (err, result) {
 
-                if (err) {
-                    console.log(err);
+				if (err) {
+					console.log(err);
 
-                    return reject(err);
-                }
+					return reject(err);
+				}
 
-                if (!result.hasOwnProperty('length')) {
-                    return resolve(result);
-                }
+				if (!result.hasOwnProperty('length')) {
+					return resolve(result);
+				}
 
-                this.formatted_sql = q.sql;
-                this.sql = q.sql.replace(/\n/g, ' ');
-                this.result = result;
-                result.instance = this;
-                return resolve(result);
-            });
-        });
-    }
+				this.formatted_sql = q.sql;
+				this.sql = q.sql.replace(/\n/g, ' ');
+				this.result = result;
+				result.instance = this;
+				return resolve(result);
+			});
+		});
+	}
 }
 
 // (async () => await MySQL.crateExternalPool())();

@@ -1,11 +1,11 @@
 exports.COMMANDS = {
-    GOOGLE: "!google ",
-    HI: "hi",
-    RECENT: "!recent "
+	GOOGLE: "!google ",
+	HI: "hi",
+	RECENT: "!recent "
 };
 
 exports.CHAT_RESPONSE = {
-    HI: 'hey'
+	HI: 'hey'
 };
 
 exports.RECENT_MESSAGE_COUNT = 5;

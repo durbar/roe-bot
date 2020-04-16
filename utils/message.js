@@ -2,24 +2,24 @@ const mysql = require("./mysql").MySQL;
 
 class Message {
 
-    static async setMessage(messageObject, command) {
+	static async setMessage(messageObject, command) {
 
-        let user = "0", message = "";
+		let user = "0", message = "";
 
-        if (messageObject.author && messageObject.author.id) {
-            user = messageObject.author.id;
-        }
+		if (messageObject.author && messageObject.author.id) {
+			user = messageObject.author.id;
+		}
 
-        if(messageObject.content) {
-            message = messageObject.content.replace(command, '');
-        }
+		if (messageObject.content) {
+			message = messageObject.content.replace(command, '');
+		}
 
-        return await mysql.query(`INSERT INTO messages (user_id, message) VALUES (?, ?)`, [user, message]);
-    }
+		return await mysql.query(`INSERT INTO messages (user_id, message) VALUES (?, ?)`, [user, message]);
+	}
 
-    static async getMessage(count, string) {
+	static async getMessage(count, string, userId) {
 
-        const messages = await mysql.query(`
+		const messages = await mysql.query(`
             SELECT 
                 message,
                 COUNT(*) AS count,
@@ -28,19 +28,20 @@ class Message {
                 messages
             WHERE 
                 message like ?
+                AND user_id = ?
             GROUP BY
                 message
             ORDER BY idx DESC LIMIT ${count}`,
-            [`%${string.replace(/%/g, "\\%").replace(/_/g, "\\_")}%`]
-        );
+			[`%${string.replace(/%/g, "\\%").replace(/_/g, "\\_")}%`, userId]
+		);
 
-        if(!messages.length) {
+		if (!messages.length) {
 
-            return `No recent message for ${string} found`;
-        }
+			return `No recent message for ${string} found`;
+		}
 
-        return "\n" + messages.map(x => `${x.message}   ${x.count > 1 ? `[${x.count}]` : ""}`).join("\n");
-    }
+		return "\n" + messages.map(x => `${x.message}   ${x.count > 1 ? `[${x.count}]` : ""}`).join("\n");
+	}
 }
 
 module.exports = Message;
