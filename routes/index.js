@@ -4,7 +4,7 @@ const bot = require("../utils/bot");
 const mysql = require("mysql");
 
 
-router.get('/ping', async function(req, res, next) {
+router.get('/ping', function(req, res, next) {
   return res.send("pong");
 });
 
